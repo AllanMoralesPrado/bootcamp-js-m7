@@ -54,3 +54,23 @@ PostgreSQL y realizar las operaciones correspondientes.
 HTTP y probar la funcionalidad de la API.
 - Verifica que puedas crear, leer, actualizar y eliminar tareas
 correctamente, y que también puedas asignar tareas a usuarios.
+
+#### SOLUCIÓN
+
+Avance: Creación de base de datos (*GiovaOliva*)
+
+```SQL
+CREATE TABLE tareas (
+	id serial primary key,
+	titulo varchar(255),
+	descripcion varchar (255),
+	completado boolean,
+	usuario_id int references usuarios (id)
+);
+
+CREATE TABLE usuarios (
+	id serial primary key,
+	nombre varchar (255),
+	correo varchar(255)
+);
+```
