@@ -25,5 +25,8 @@
     "mocha": "^10.2.0",
     "pg": "^8.11.1",
     "pg-format": "^1.0.4"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.0.2"
   }
 }
