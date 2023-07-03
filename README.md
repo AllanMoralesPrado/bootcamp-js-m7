@@ -70,9 +70,14 @@ CREATE TABLE IF NOT EXISTS usuarios (
 );
 ```
 
-Avance: Creación de funciones que ingresan datos a la BD en el archivo queries.js.
-        
-- insertUser() acepta 2 parámetros; nombre y email. Si se deja vacío se crean datos random a través de Faker. Con parámetros distintos a 2, lanza error.
-- insertTarea() acepta 3 parámetros; título, descripción y id_usuario. Si se deja vació ó id_usuario no es válido, lanza error
+Avance: Función que maneja la BD en query.js. No me la pude haciéndolo sincrónico por lo que lo cambie todo a asíncrono y quedo más simple.
+
+insert.js
+- insertUser(...args): acepta 2 parámetros; nombre y email. Si se deja vacío se crean datos random a través de Faker. Con parámetros distintos a 2, lanza error.
+- insertTarea(...args): acepta 3 parámetros; título, descripción y id_usuario. Si se deja vació ó id_usuario no es válido, lanza error
+
+select.js
+- selectUser(): no acepta parámetros. Retorna todos los datos de la tabla user.
+- selectTareas(): no acepta parámetros. Retorna todos los datos de la tabla tareas.
 
 Avance: Creación de archivo error.js con errores típicos durante el manejo de bases de datos. Llamar con errorCode(error).

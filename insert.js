@@ -1,71 +1,52 @@
-const { pool } = require("./dataBase.js");
-const { errorCode } = require("./error.js");
+const { query, endPool } = require("./query.js");
 
 const { faker } = require("@faker-js/faker/locale/es");
 
 
-function insertUser(...args) {
+async function insertUser(...args) {
     if(args.length === 0) {
         const user = {
             text: "INSERT INTO usuarios VALUES (DEFAULT, $1, $2) RETURNING *;",
             values: [faker.person.firstName(), faker.internet.email()],
             rowMode: "array",
-            desc: "\nIngreso nueva cuenta",
+            desc: "\nIngreso nueva usuario",
         };
-        query(user);
+        const result = await query(user);
+		console.log(user.desc);
+		return result;
     } else if(args.length === 2) {
         const user = {
 			text: "INSERT INTO usuarios VALUES (DEFAULT, $1, $2) RETURNING *;",
 			values: [args[0], args[1]],
 			rowMode: "array",
-			desc: "\nIngreso nueva cuenta",
+			desc: "\nIngreso nueva usuario",
 		};
-        query(user);
+        const result = await query(user);
+		console.log(user.desc);
+		return result;
     } else {
         throw new Error("Número de parámetros erróneo");
     }
 }
 
-function insertTarea(...args) {
+async function insertTarea(...args) {
 	if (args.length === 3) {
-		const user = {
+		const tarea = {
 			text: "INSERT INTO tareas VALUES (DEFAULT, $1, $2, 'false', $3) RETURNING *;",
 			values: [args[0], args[1], args[2]],
 			rowMode: "array",
-			desc: "\nIngreso nueva cuenta",
+			desc: "\nIngreso nueva tarea",
 		};
-		query(user);
+		const result = await query(tarea);
+		console.log(tarea.desc);
+		return result;
 	} else {
 		throw new Error("Número de parámetros erróneo");
 	}
 }
 
-const query = (obj) => {
-	pool.connect()
-		.then((client) => {
-			client
-				.query(obj)
-				.then((result) => {
-					console.log(obj.desc);
-					console.log(result.rows);
-					return result.rows;
-				})
-				.catch((err) => {
-					errorCode(err);
-				})
-				.finally(() => {
-					client.release();
-				});
-		})
-		.catch((err) => {
-			errorCode(err);
-		})
-		.finally(() => {
-			pool.end();
-		});
-};
-
-insertUser();
-insertTarea("Queries", "Hacer los queries", "3");
+insertUser().then((res) => console.log(res));
+insertTarea("Queries", "Hacer los queries", "3").then((res) => console.log(res));
 
 
+endPool();
