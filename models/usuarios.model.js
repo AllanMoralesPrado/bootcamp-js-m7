@@ -36,7 +36,7 @@ const update = async (data, id) => {
   return rows[0];
 };
 
-//PUT
+//DELETE
 const remove = async (id) => {
   const consulta = "DELETE FROM usuarios WHERE id = $1 RETURNING *";
   const { rows } = await pool.query(consulta, [id]);
