@@ -80,4 +80,12 @@ select.js
 - selectUser(): no acepta parámetros. Retorna todos los datos de la tabla user.
 - selectTareas(): no acepta parámetros. Retorna todos los datos de la tabla tareas.
 
+delete.js
+- deleteUser(id): elimina al usuario según el id de la tabla usuarios.
+- deleteTarea(id): elimina la tarea según el id de la tabla tareas.
+
+update.js
+- updateUser(id, ...args): actualiza al usuario según el id de la tabla usuarios. Acepta hasta 2 parámetros, nombre y correo en ese orden. Si algún parámetro es "null", se mantiene el valor anterior.
+- updateTarea(id, ...args): actualiza la tarea según el id de la tabla tareas. Acepta hasta 4 parámetros, titulo, descripcion, completada y usuario_id en ese orden. Si algún parámetro es "null", se mantiene el valor anterior. Si usuario_id es inválido, lanza error.
+
 Avance: Creación de archivo error.js con errores típicos durante el manejo de bases de datos. Llamar con errorCode(error).
