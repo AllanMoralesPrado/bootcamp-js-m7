@@ -72,20 +72,12 @@ CREATE TABLE IF NOT EXISTS usuarios (
 
 Avance: Función que maneja la BD en query.js. No me la pude haciéndolo sincrónico por lo que lo cambie todo a asíncrono y quedo más simple.
 
-insert.js
-- insertUser(...args): acepta 2 parámetros; nombre y email. Si se deja vacío se crean datos random a través de Faker. Con parámetros distintos a 2, lanza error.
-- insertTarea(...args): acepta 3 parámetros; título, descripción y id_usuario. Si se deja vació ó id_usuario no es válido, lanza error
+tarea.js y usuario.js ahora son clases y funcionan igual a lo visto en el Modulo 8
 
-select.js
-- selectUser(): no acepta parámetros. Retorna todos los datos de la tabla user.
-- selectTareas(): no acepta parámetros. Retorna todos los datos de la tabla tareas.
+Use funcionUsuario.js y funcionTarea.js como un area de pruebas.
 
-delete.js
-- deleteUser(id): elimina al usuario según el id de la tabla usuarios.
-- deleteTarea(id): elimina la tarea según el id de la tabla tareas.
-
-update.js
-- updateUser(id, ...args): actualiza al usuario según el id de la tabla usuarios. Acepta hasta 2 parámetros, nombre y correo en ese orden. Si algún parámetro es "null", se mantiene el valor anterior.
-- updateTarea(id, ...args): actualiza la tarea según el id de la tabla tareas. Acepta hasta 4 parámetros, titulo, descripcion, completada y usuario_id en ese orden. Si algún parámetro es "null", se mantiene el valor anterior. Si usuario_id es inválido, lanza error.
-
-Avance: Creación de archivo error.js con errores típicos durante el manejo de bases de datos. Llamar con errorCode(error).
+- usuario.insert(): agrega al usuario a la base de datos.
+- Usuario.Fin(id): función estática que retorna a el usuario según id.
+- Usuario.All(): función estática que retorna un arreglo con todos los usuarios.
+- Usuario.Actualizar(id, ...args): función estática que recibe un id y un conjunto de parámetros para actualizar en la base de datos según el id. Los valóres nulos, quedan con los valores originales.
+- Usuario.Delete(id): función estática que recibe un id y elimina a dicho elemento de la base de datos.
