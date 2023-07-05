@@ -5,7 +5,7 @@ const Usuario = require("./usuario");
 
 http.createServer(async (req, res) => {
 	const { searchParams, pathname } = new URL(req.url, `http://${req.headers.host}`);
-//	const params = new URLSearchParams(searchParams);
+	const params = new URLSearchParams(searchParams);
 
 	const get = async (pathname) => {
 		try {
@@ -54,6 +54,60 @@ http.createServer(async (req, res) => {
 		});
 	};
 
+	const put = async (pathname) => {
+		let datos;
+		req.on("data", (data) => {
+			datos = JSON.parse(data);
+		});
+		req.on("end", async () => {
+			try {
+				const id = params.get("id");
+				console.log(params.get("id"));
+				let objeto;
+				if (pathname == "/tarea") {
+					objeto = Tarea.Actualizar(id, datos.titulo, datos.descripcion, datos.completado, datos.usuario_id);
+				}
+				if (pathname == "/usuario") {
+					objeto = Usuario.Actualizar(id, datos.nombre, datos.correo);
+				}
+				res.statusCode = 200;
+				res.write(`Objeto actualizado con id ${id}`);
+			} catch (err) {
+				console.log("Error en put de index.js");
+				console.log(err);
+			} finally {
+				res.end();
+			}
+		});
+	};
+
+	const borrar = async (pathname) => {
+		let datos;
+		req.on("data", (data) => {
+			datos = JSON.parse(data);
+		});
+		req.on("end", async () => {
+			try {
+				const id = params.get("id");
+				console.log(params.get("id"));
+				let objeto;
+				if (pathname == "/tarea") {
+					objeto = Tarea.Delete(id);
+				}
+				if (pathname == "/usuario") {
+					objeto = Usuario.Delete(id);
+				}
+				res.statusCode = 200;
+				res.write(`Objeto actualizado con id ${id}`);
+			} catch (err) {
+				console.log("Error en put de index.js");
+				console.log(err);
+			} finally {
+				res.end();
+			}
+		});
+	};
+
 	const notFound = () => {
 		res.statusCode = 404;
 		res.write(`Error 404 Not Found`);
@@ -69,10 +123,10 @@ http.createServer(async (req, res) => {
 				post(pathname);
 				break;
 			case "PUT":
-				putArchivo("anime");
+				put(pathname);
 				break;
 			case "DELETE":
-				deleteArchivo("anime");
+				borrar(pathname);
 				break;
 		}
 	} else {

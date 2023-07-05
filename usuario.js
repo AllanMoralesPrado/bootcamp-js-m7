@@ -46,7 +46,7 @@ class Usuario {
 		return new Promise(function (resolve) {
 			pool.query(sql, [self.nombre, self.correo], function (err, res) {
 				if (err) {
-					console.log(err);
+					console.error(err);
 				}
 				console.log(`...usuario con id: ${res.rows[0].id} insertado en la bases de datos`);
 				resolve(self);
