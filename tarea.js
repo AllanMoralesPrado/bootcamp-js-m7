@@ -68,8 +68,8 @@ class Tarea {
 				if (err) {
 					console.log(err);
 				}
-				console.log(`...tarea con id: ${res.rows[0].id} insertado en la bases de datos`);
-				resolve(self);
+				console.log(`Tarea con id: ${res.rows[0].id} insertado en la bases de datos`);
+				resolve(res.rows[0]);
 			});
 		});
 	}

@@ -9,7 +9,7 @@ const Tarea = require("./tarea");
 	// console.log(tarea1.allData());
 
 	// //*Actualizando al tarea ID 2. Los valores "null" no se actualizan
-	Tarea.Actualizar(3, null, null, false, 16).then((res) => console.log(res));
-
+	//Tarea.Actualizar(3, null, null, false, 16).then((res) => console.log(res));
+    Tarea.Delete(20).then(res => console.log(res));
 	//Tarea.All().then((res) => console.table(res));
 })();
