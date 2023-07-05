@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS tareas (
     titulo varchar(255),
     descripcion varchar(255),
     completado boolean,
-    usuario_id integer REFERENCES usuarios(id) NOT NULL
+    usuario_id integer REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS usuarios (
@@ -72,7 +72,8 @@ CREATE TABLE IF NOT EXISTS usuarios (
 
 Avance: Función que maneja la BD en query.js. No me la pude haciéndolo sincrónico por lo que lo cambie todo a asíncrono y quedo más simple.
 
-tarea.js y usuario.js ahora son clases y funcionan igual a lo visto en el Modulo 8
+### tarea.js y usuario.js 
+ahora son clases y funcionan igual a lo visto en el Modulo 8
 
 Use funcionUsuario.js y funcionTarea.js como un area de pruebas.
 
@@ -81,3 +82,19 @@ Use funcionUsuario.js y funcionTarea.js como un area de pruebas.
 - Usuario.All(): función estática que retorna un arreglo con todos los usuarios.
 - Usuario.Actualizar(id, ...args): función estática que recibe un id y un conjunto de parámetros para actualizar en la base de datos según el id. Los valóres nulos, quedan con los valores originales.
 - Usuario.Delete(id): función estática que recibe un id y elimina a dicho elemento de la base de datos.
+
+- tarea.insert(): agrega al tarea a la base de datos.
+- Tarea.Fin(id): función estática que retorna a el tarea según id.
+- Tarea.All(): función estática que retorna un arreglo con todos los tareas.
+- Tarea.Actualizar(id, ...args): función estática que recibe un id y un conjunto de parámetros para actualizar en la base de datos según el id. Los valóres nulos, quedan con los valores originales.
+- Tarea.Delete(id): función estática que recibe un id y elimina a dicho elemento de la base de datos.
+
+
+### server.js 
+funciona según lo visto en el módulo 6.
+
+Pathname : /tarea, /usuario
+- GET: no requiere parámetros, retorna la tabla completa. (localhost:3000/tarea)
+- POST: no requiere parámetros, recibe un JSON con datos. (localhost:3000/tarea)
+- PUT: requiere de un parámetro ID, recibe un JSON con datos. (localhost:3000/tarea?id=69)
+- DELETE: requiere de un parámetro ID. (localhost:3000/tarea?id=69)

@@ -96,9 +96,9 @@ http.createServer(async (req, res) => {
 					objeto = Usuario.Delete(id);
 				}
 				res.statusCode = 200;
-				res.write(`Objeto actualizado con id ${id}`);
+				res.write(`Objeto eliminado con id ${id}`);
 			} catch (err) {
-				console.log("Error en put de index.js");
+				console.log("Error en borrar de index.js");
 				console.log(err);
 			} finally {
 				res.end();
