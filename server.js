@@ -62,7 +62,6 @@ http.createServer(async (req, res) => {
 		req.on("end", async () => {
 			try {
 				const id = params.get("id");
-				console.log(params.get("id"));
 				let objeto;
 				if (pathname == "/tarea") {
 					objeto = Tarea.Actualizar(id, datos.titulo, datos.descripcion, datos.completado, datos.usuario_id);
@@ -89,7 +88,6 @@ http.createServer(async (req, res) => {
 		req.on("end", async () => {
 			try {
 				const id = params.get("id");
-				console.log(params.get("id"));
 				let objeto;
 				if (pathname == "/tarea") {
 					objeto = Tarea.Delete(id);
