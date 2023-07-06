@@ -4,9 +4,6 @@ const { server } = require("../server.js");
 
 chai.use(chaiHttp);
 
-let usuarioPruebasID;
-let tareaPruebasID;
-
 describe("Verificación ruta /usuario", () => {
   it("La petición con método GET responde con un código 200", (done) => {
     chai
