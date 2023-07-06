@@ -4,7 +4,8 @@
   "description": "Proyecto extraordinario que consiste en la creación de una API utilizando Node.js y PostgreSQL para gestionar tareas",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
