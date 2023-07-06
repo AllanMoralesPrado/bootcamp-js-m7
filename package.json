@@ -23,6 +23,7 @@
   "homepage": "https://github.com/AllanMoralesPrado/bootcamp-js-m7#readme",
   "dependencies": {
     "chai": "^4.3.7",
+    "chai-http": "^4.4.0",
     "dotenv": "^16.3.1",
     "mocha": "^10.2.0",
     "pg": "^8.11.1",

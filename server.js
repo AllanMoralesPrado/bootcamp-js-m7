@@ -20,6 +20,7 @@ const server = http.createServer(async (req, res) => {
         select = await Usuario.All();
       }
       select = JSON.stringify(select);
+      res.setHeader("content-type", "application/json");
       res.statusCode = 200;
       res.write(select);
     } catch (err) {
@@ -51,7 +52,8 @@ const server = http.createServer(async (req, res) => {
           objeto = new Usuario(datos.nombre, datos.correo);
         }
         const result = await objeto.insert();
-        res.statusCode = 200;
+
+        res.statusCode = 201;
         res.write(`Objeto ingresado con id ${result.id}`);
       } catch (err) {
         console.log("Error en post de index.js");
@@ -83,6 +85,7 @@ const server = http.createServer(async (req, res) => {
         if (pathname == "/usuario") {
           objeto = Usuario.Actualizar(id, datos.nombre, datos.correo);
         }
+
         res.statusCode = 200;
         res.write(`Objeto actualizado con id ${id}`);
       } catch (err) {
@@ -147,3 +150,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(3000);
+
+module.exports = { server };
